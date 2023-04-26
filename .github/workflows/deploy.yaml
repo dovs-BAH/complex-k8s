@@ -18,6 +18,7 @@ jobs:
       - run: docker build -t dovsimen/complex-server ./server
       - run: docker build -t dovsimen/complex-worker ./worker
  
+      #failing here for now.
       - run: docker push dovsimen/complex-client
       - run: docker push dovsimen/complex-nginx
       - run: docker push dovsimen/complex-server
