@@ -1,13 +1,13 @@
 FROM node:16-alpine AS builder
 
-USER node
+# USER node
 
 WORKDIR '/app'
 
 
-COPY --chown=node:node ./package.json ./
+COPY ./package.json ./
 RUN npm install
-COPY --chown=node:node ./ ./
+COPY . .
 RUN npm run build
 
 FROM nginx:latest
@@ -17,5 +17,5 @@ EXPOSE 3000
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/build /usr/share/nginx/html
 
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
 
