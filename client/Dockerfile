@@ -1,4 +1,4 @@
-FROM node:16-alpine AS builder
+FROM node:16-alpine
 
 USER node
 
@@ -11,7 +11,7 @@ RUN npm install
 COPY --chown=node:node ./ ./
 RUN npm run build
 
-FROM nginx
+FROM nginx:latest AS builder
 EXPOSE 3000
 # if needed add
 # --chown=node:node
